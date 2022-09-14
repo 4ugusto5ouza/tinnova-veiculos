@@ -22,6 +22,7 @@ namespace TinnovaVeiculos.Presentation.WebAPI
             services.AddControllers();
 
             services.AddDbContextConfiguration(Configuration);
+            services.AddDependencyInjectionConfiguration();
 
         }
 
