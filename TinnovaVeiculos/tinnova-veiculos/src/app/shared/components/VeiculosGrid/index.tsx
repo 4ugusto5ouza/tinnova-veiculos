@@ -18,19 +18,23 @@ export const VeiculosGrid = () => {
 
   useEffect(() => {
     const res = getAll<VeiculoVIewModel>("Veiculo/GetAll")
-      .then((response) => setVeiculos(() => response))
+      .then((response) => {
+        console.log(response);
+
+        setVeiculos(() => response);
+      })
       .catch((error) => console.log(error));
   }, []);
   return (
-    <Box w={"100%S"} h={"100%"}>
+    <Box width={"100%"} height={"100%"}>
       <Stack direction={"row"}>
-        <Box w={"100%"} h={"100%"}>
+        <Box width={"100%"} height={"100%"}>
           {/* <ActionsBar  idAvisoFerias={selectedAvisoFerias.id} /> */}
           <button>Adicionar</button>
           <button>Editar</button>
           <button>Deletar</button>
           <TableContainer>
-            <Table variant="simple" size={"sm"} w={"100%"} h={"100%"}>
+            <Table variant="simple" size={"sm"} width={"100%"} height={"100%"}>
               <Thead>
                 <Tr>
                   <Th>Veículo</Th>
@@ -45,13 +49,13 @@ export const VeiculosGrid = () => {
                 {veiculos &&
                   veiculos.map((veiculo) => {
                     return (
-                      <Tr>
-                        <Td>{"Ford Hatch"}</Td>
-                        <Td>Ford</Td>
-                        <Td>{"2012"}</Td>
-                        <Td>{"Ford 2012 único dono"}</Td>
-                        <Td>{"21/09/2022"}</Td>
-                        <Td>{"Não"}</Td>
+                      <Tr key={veiculo.id}>
+                        <Td>{veiculo.modelo}</Td>
+                        <Td>{veiculo.marca}</Td>
+                        <Td>{veiculo.anoFabricacao}</Td>
+                        <Td>{veiculo.descricao}</Td>
+                        <Td>{new Date(veiculo.dataRegistro).toLocaleDateString()}</Td>
+                        <Td>{veiculo.vendido ? "SIM" : "NÃO"}</Td>
                       </Tr>
                     );
                   })}

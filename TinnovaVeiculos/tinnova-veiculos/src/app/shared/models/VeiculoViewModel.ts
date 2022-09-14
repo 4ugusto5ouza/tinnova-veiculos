@@ -1,9 +1,10 @@
 export interface VeiculoVIewModel {
-    Id: number;
-    Modelo: string;
-    Marca: string;
-    Ano: number;
-    Descricao: string;
-    DataRegistro: Date;
-    DataAtualizacao: Date;
+    id: number;
+    modelo: string;
+    marca: string;
+    anoFabricacao: number;
+    descricao: string;
+    vendido: boolean;
+    dataRegistro: Date;
+    dataAtualizacao?: Date;
 }
