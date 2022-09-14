@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TinnovaVeiculos.Domain.Interfaces.Repositories;
 using TinnovaVeiculos.Domain.Interfaces.Services;
 
@@ -20,7 +21,7 @@ namespace TinnovaVeiculos.Application.AppServices
 
         public IEnumerable<TEntity> GetAllAsNoTracking()
         {
-            return _repository.GetAllAsNoTracking();
+            return _repository.GetAllAsNoTracking().ToList();
         }
 
         public void Create(TEntity entity)

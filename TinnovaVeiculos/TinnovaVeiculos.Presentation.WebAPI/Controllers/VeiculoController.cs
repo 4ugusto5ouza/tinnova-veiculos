@@ -25,7 +25,7 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
         {
             //var filtro = filters.ToJson<Filter>();
             return Ok(_appService.GetAllAsNoTracking());
-        }       
+        }
     }
 }
 
