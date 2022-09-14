@@ -24,6 +24,7 @@ namespace TinnovaVeiculos.Presentation.WebAPI
             services.AddDbContextConfiguration(Configuration);
             services.AddDependencyInjectionConfiguration();
 
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +36,14 @@ namespace TinnovaVeiculos.Presentation.WebAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(options =>
+            {
+                options
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
             app.UseRouting();
 
