@@ -8,7 +8,7 @@ namespace TinnovaVeiculos.Infrastruture.Data.EntitiesConfigs
     {
         public void Configure(EntityTypeBuilder<Veiculo> builder)
         {
-            builder.ToTable("Veiculo");
+            builder.ToTable("Veiculos");
 
             builder.HasKey(x => x.Id);
 
