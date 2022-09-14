@@ -17,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{29F6D787-414F-4D45-95DF-9FCE64F98F1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinnovaVeiculos.Domain", "TinnovaVeiculos.Domain\TinnovaVeiculos.Domain.csproj", "{759FFF54-9396-447B-99A7-E92DFAD477CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinnovaVeiculos.Domain", "TinnovaVeiculos.Domain\TinnovaVeiculos.Domain.csproj", "{759FFF54-9396-447B-99A7-E92DFAD477CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinnovaVeiculos.Presentation.WebAPI", "TinnovaVeiculos.Presentation.WebAPI\TinnovaVeiculos.Presentation.WebAPI.csproj", "{7DCB323C-49E3-417E-AB5A-2E244E9ADC1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinnovaVeiculos.Presentation.WebAPI", "TinnovaVeiculos.Presentation.WebAPI\TinnovaVeiculos.Presentation.WebAPI.csproj", "{7DCB323C-49E3-417E-AB5A-2E244E9ADC1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinnovaVeiculos.Infrastruture.Data", "TinnovaVeiculos.Infrastruture.Data\TinnovaVeiculos.Infrastruture.Data.csproj", "{3E02CA7C-2E32-4047-AD97-51DF89CE2E22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinnovaVeiculos.Infrastruture.Data", "TinnovaVeiculos.Infrastruture.Data\TinnovaVeiculos.Infrastruture.Data.csproj", "{3E02CA7C-2E32-4047-AD97-51DF89CE2E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinnovaVeiculos.Application", "TinnovaVeiculos.Application\TinnovaVeiculos.Application.csproj", "{3CEDA780-31CF-4F71-87C0-1B26943B6AF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinnovaVeiculos.Application", "TinnovaVeiculos.Application\TinnovaVeiculos.Application.csproj", "{3CEDA780-31CF-4F71-87C0-1B26943B6AF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
