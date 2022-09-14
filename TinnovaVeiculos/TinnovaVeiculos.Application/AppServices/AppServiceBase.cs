@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TinnovaVeiculos.Domain.Interfaces.Repositories;
 using TinnovaVeiculos.Domain.Interfaces.Services;
-using TinnovaVeiculos.Infrastruture.Data.Repositories;
 
 namespace TinnovaVeiculos.Application.AppServices
 {
