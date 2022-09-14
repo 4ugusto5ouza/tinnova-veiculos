@@ -7,36 +7,36 @@ namespace TinnovaVeiculos.Domain.Entities
         public Veiculo()
         {
             Vendido = false;
-            Created = DateTime.Now;
+            DataRegistro = DateTime.Now;
         }
 
-        public Veiculo(string modelo, string marca, int ano, string descricao)
+        public Veiculo(string modelo, string marca, int anoFabricacao, string descricao)
         {
             Modelo = modelo;
             Marca = marca;
-            Ano = ano;
+            AnoFabricacao = anoFabricacao;
             Descricao = descricao;
             Vendido = false;
-            Created = DateTime.Now;
+            DataRegistro = DateTime.Now;
         }
 
         public long Id { get; set; }
         public string Modelo { get; set; }
         public string Marca { get; set; }
-        public int Ano { get; set; }
+        public int AnoFabricacao { get; set; }
         public string Descricao { get; set; }
         public bool Vendido { get; private set; }
-        public DateTime Created { get; private set; }
-        public DateTime? Updated { get; private set; }
+        public DateTime DataRegistro { get; private set; }
+        public DateTime? DataAtualizacao { get; private set; }
 
         public void SetVendido(bool vendido)
         {
             Vendido = vendido;
         }
 
-        public void SetUpdated()
+        public void SetDataAtualizacao()
         {
-            Updated = DateTime.Now;
+            DataAtualizacao = DateTime.Now;
         }
     }
 }
