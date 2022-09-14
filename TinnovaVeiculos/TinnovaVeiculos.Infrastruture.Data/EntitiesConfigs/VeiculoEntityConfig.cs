@@ -31,8 +31,7 @@ namespace TinnovaVeiculos.Infrastruture.Data.EntitiesConfigs
                 .HasColumnName("Created")
                 .IsRequired();
             builder.Property(x => x.DataAtualizacao)
-                .HasColumnName("Updated")
-                .IsRequired();
+                .HasColumnName("Updated");
         }
     }
 }
