@@ -5,19 +5,14 @@ export interface HeaderProps {
   userName: string;
 }
 
-export const Header = ({enterpriseName, userName}: HeaderProps) => {
+export const Header = ({ enterpriseName, userName }: HeaderProps) => {
   return (
     <Box
       width={"100%"}
       height={"52px"}
       shadow="base"
       padding={"0 2%"}
-      marginBottom={{
-        base: "0px",
-        lg: "12px",
-        xl: "14px",
-        "2xl": "20px",
-      }}
+      marginBottom={"14px"}
       backgroundColor={"#fff"}
     >
       <Flex height={"100%"} justifyItems={"center"} alignItems={"center"}>
@@ -32,12 +27,7 @@ export const Header = ({enterpriseName, userName}: HeaderProps) => {
           marginRight={"20px"}
         >
           <Text fontSize={"12px "}>{userName}</Text>
-          <Avatar
-            marginLeft={"10px"}
-            size={"sm"}
-            name={userName}
-            src=""
-          />
+          <Avatar marginLeft={"10px"} size={"sm"} name={userName} src="" />
         </Flex>
       </Flex>
     </Box>
