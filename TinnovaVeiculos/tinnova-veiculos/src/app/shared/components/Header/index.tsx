@@ -1,7 +1,11 @@
 import { Avatar, Box, Flex, Spacer, Text } from "@chakra-ui/react";
-import React from "react";
 
-export const Header = () => {
+export interface HeaderProps {
+  enterpriseName: string;
+  userName: string;
+}
+
+export const Header = ({enterpriseName, userName}: HeaderProps) => {
   return (
     <Box
       width={"100%"}
@@ -17,8 +21,8 @@ export const Header = () => {
       backgroundColor={"#fff"}
     >
       <Flex height={"100%"} justifyItems={"center"} alignItems={"center"}>
-        <Text fontSize={"20px"}fontWeight={"700"}>
-            {"Tinnova Veículos"}
+        <Text fontSize={"20px"} fontWeight={"700"}>
+          {enterpriseName}
         </Text>
 
         <Spacer />
@@ -27,8 +31,13 @@ export const Header = () => {
           alignItems={"center"}
           marginRight={"20px"}
         >
-          <Text fontSize={"12px "}>{"Augusto Souza"}</Text>
-          <Avatar marginLeft={"10px"} size={"sm"} name={"Augusto Souza"} src="" />
+          <Text fontSize={"12px "}>{userName}</Text>
+          <Avatar
+            marginLeft={"10px"}
+            size={"sm"}
+            name={userName}
+            src=""
+          />
         </Flex>
       </Flex>
     </Box>

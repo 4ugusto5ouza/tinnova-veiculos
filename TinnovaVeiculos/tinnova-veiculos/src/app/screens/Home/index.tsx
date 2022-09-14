@@ -5,7 +5,7 @@ import { VeiculosGrid } from "../../shared/components/VeiculosGrid";
 export const Home = () => {
   return (
     <Box width={"1240px"}>
-      <Header />
+      <Header enterpriseName="Tinnova Veículos" userName="Augusto Souza"/>
       <VeiculosGrid />
     </Box>
   );

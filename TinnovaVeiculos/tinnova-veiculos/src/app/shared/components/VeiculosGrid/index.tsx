@@ -1,22 +1,26 @@
 import {
   Box,
   Stack,
-  Tab,
   Table,
   TableContainer,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
   Tbody,
   Td,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import React from "react";
+import { useEffect, useState } from "react";
+import { getAll } from "../../../services/api";
+import { VeiculoVIewModel } from "../../models/VeiculoViewModel";
 
 export const VeiculosGrid = () => {
+  const [veiculos, setVeiculos] = useState<VeiculoVIewModel[]>([]);
+
+  useEffect(() => {
+    const res = getAll<VeiculoVIewModel>("Veiculo/GetAll")
+      .then((response) => setVeiculos(() => response))
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <Box w={"100%S"} h={"100%"}>
       <Stack direction={"row"}>
@@ -38,14 +42,19 @@ export const VeiculosGrid = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                    <Td>{"Ford Hatch"}</Td>
-                    <Td>Ford</Td>
-                    <Td>{"2012"}</Td>
-                    <Td>{"Ford 2012 único dono"}</Td>
-                    <Td>{"21/09/2022"}</Td>
-                    <Td>{"Não"}</Td>
-                </Tr>
+                {veiculos &&
+                  veiculos.map((veiculo) => {
+                    return (
+                      <Tr>
+                        <Td>{"Ford Hatch"}</Td>
+                        <Td>Ford</Td>
+                        <Td>{"2012"}</Td>
+                        <Td>{"Ford 2012 único dono"}</Td>
+                        <Td>{"21/09/2022"}</Td>
+                        <Td>{"Não"}</Td>
+                      </Tr>
+                    );
+                  })}
               </Tbody>
             </Table>
           </TableContainer>
