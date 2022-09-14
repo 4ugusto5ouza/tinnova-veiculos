@@ -2,7 +2,7 @@
 
 namespace TinnovaVeiculos.Domain.Interfaces.Repositories
 {
-    public interface IVeiculosRepository : IRepositoryBase<Veiculo>
+    public interface IVeiculoRepository : IRepositoryBase<Veiculo>
     {
     }
 }
