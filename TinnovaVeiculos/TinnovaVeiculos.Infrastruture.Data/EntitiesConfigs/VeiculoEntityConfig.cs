@@ -4,7 +4,7 @@ using TinnovaVeiculos.Domain.Entities;
 
 namespace TinnovaVeiculos.Infrastruture.Data.EntitiesConfigs
 {
-    public class VeiculosEntityConfig : IEntityTypeConfiguration<Veiculo>
+    public class VeiculoEntityConfig : IEntityTypeConfiguration<Veiculo>
     {
         public void Configure(EntityTypeBuilder<Veiculo> builder)
         {
