@@ -1,5 +1,5 @@
 import { Button, Text } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export interface ButtonActionProps {
   label: string;
@@ -24,16 +24,14 @@ export interface ButtonActionProps {
     | "twitter"
     | "telegram"
     | undefined;
-  navigateTo: string;
-  action: (navigateTo: string) => void;
+  onClick: () => void;
   children: ReactNode;
 }
 export const ButtonAction = ({
   label,
   variant,
   colorScheme,
-  navigateTo,
-  action,
+  onClick,
   children,
 }: ButtonActionProps) => {
   return (
@@ -43,7 +41,7 @@ export const ButtonAction = ({
       colorScheme={colorScheme}
       marginX={"5px"}
       padding={"2"}
-      onClick={() => action(navigateTo)}
+      onClick={onClick}
     >
       {children}
       <Text fontSize={"12px"}>{label}</Text>

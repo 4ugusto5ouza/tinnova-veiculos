@@ -1,4 +1,4 @@
-export interface IVeiculoViewModel {
+export interface VeiculoViewModel {
     id: number;
     modelo: string;
     marca: string;

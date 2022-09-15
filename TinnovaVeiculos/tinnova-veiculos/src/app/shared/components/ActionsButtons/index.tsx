@@ -1,10 +1,30 @@
 import { Flex } from "@chakra-ui/react";
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router-dom";
 import { ButtonAction } from "./ButtonAction";
+import { ModalPage } from "../ModalPage";
+import { ModalContentBody } from "../ModalPage/ModalContentBody";
+import { ModalContentFooter } from "../ModalPage/ModalContentFooter";
+import { useState } from "react";
+import { VeiculoViewModel } from "../../models/VeiculoViewModel";
+import { createEntity } from "../../../services/api";
 
 export const ActionsButtons = () => {
-  const navigate = useNavigate();
+  const [veiculo, setVeiculo] = useState({} as VeiculoViewModel);
+  const [isOpenModalAdd, setIsOpenModalAdd] = useState<boolean>(false);
+
+  function onOpenModalAdd() {
+    setIsOpenModalAdd(true);
+  }
+
+  function onCloseModalAdd() {
+    setIsOpenModalAdd(false);
+  }
+
+  function handleClickSave() {
+    createEntity("Veiculo/Create", veiculo);
+    onCloseModalAdd();
+  }
+
   return (
     <Flex
       width={"100%"}
@@ -20,25 +40,35 @@ export const ActionsButtons = () => {
         variant="solid"
         label="Adicionar"
         colorScheme={"green"}
-        navigateTo="/Add"
-        action={navigate}
+        onClick={onOpenModalAdd}
         children={<AddIcon width={3} height={3} marginRight={2} />}
       />
       <ButtonAction
         variant="solid"
         label="Editar"
         colorScheme={"orange"}
-        navigateTo="/Editar/{id}"
-        action={navigate}
+        onClick={onOpenModalAdd}
         children={<EditIcon width={3} height={3} marginRight={2} />}
       />
       <ButtonAction
         variant="solid"
         label="Deletar"
         colorScheme={"red"}
-        navigateTo="/Deletar/{id}"
-        action={navigate}
+        onClick={onOpenModalAdd}
         children={<DeleteIcon width={3} height={3} marginRight={2} />}
+      />
+      <ModalPage
+        title="Adicionar veículo"
+        isOpen={isOpenModalAdd}
+        onOpen={onOpenModalAdd}
+        onClose={onCloseModalAdd}
+        contentBody={<ModalContentBody handleInputChange={setVeiculo} />}
+        contentFooter={
+          <ModalContentFooter
+            handleClickCancelar={onCloseModalAdd}
+            handleClickSalvar={handleClickSave}
+          />
+        }
       />
     </Flex>
   );

@@ -32,7 +32,7 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
         }
 
         //POST: VeiculoController/Create
-        [HttpPost]
+        [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Create([FromBody] VeiculoDTO dto)

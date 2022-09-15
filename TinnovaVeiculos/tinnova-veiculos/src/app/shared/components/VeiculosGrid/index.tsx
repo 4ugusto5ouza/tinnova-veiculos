@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getAll } from "../../../services/api";
-import { IVeiculoViewModel } from "../../models/VeiculoViewModel";
+import { VeiculoViewModel } from "../../models/VeiculoViewModel";
 import { ActionsButtons } from "../ActionsButtons";
 import { FormFilters } from "../FormFilters";
 
@@ -24,13 +24,13 @@ export interface VeiculoFormFieldsProps {
 }
 
 export const VeiculosGrid = () => {
-  const [veiculos, setVeiculos] = useState<IVeiculoViewModel[]>([]);
+  const [veiculos, setVeiculos] = useState<VeiculoViewModel[]>([]);
   const [formFields, setFormFields] = useState<VeiculoFormFieldsProps>(
     {} as VeiculoFormFieldsProps
   );
 
   useEffect(() => {
-    getAll<IVeiculoViewModel>("Veiculo/GetAll", { filters: formFields })
+    getAll<VeiculoViewModel>("Veiculo/GetAll", { filters: formFields })
       .then((response) => setVeiculos(() => response))
       .catch((error) => console.log(error));
   }, [formFields]);
