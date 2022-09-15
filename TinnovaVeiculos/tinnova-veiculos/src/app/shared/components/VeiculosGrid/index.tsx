@@ -48,10 +48,8 @@ export const VeiculosGrid = () => {
   };
 
   function getVeiculoSelecionado(): VeiculoViewModel {
-    console.log(veiculos);
-
-    console.log(veiculos.find((x) => x.selecionado));
-    return veiculos[0];
+    const veiculo = veiculos.find((x) => x.selecionado);
+    return veiculo as VeiculoViewModel;
   }
   return (
     <Box width={"100%"} height={"700px"}>

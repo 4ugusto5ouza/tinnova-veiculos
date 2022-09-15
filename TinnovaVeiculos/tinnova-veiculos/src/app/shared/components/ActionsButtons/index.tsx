@@ -4,7 +4,7 @@ import { ButtonAction } from "./ButtonAction";
 import { ModalPage } from "../ModalPage";
 import { ModalContentBody } from "../ModalPage/ModalContentBody";
 import { ModalContentFooter } from "../ModalPage/ModalContentFooter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VeiculoViewModel } from "../../models/VeiculoViewModel";
 import { createEntity, updateEntity } from "../../../services/api";
 
@@ -13,18 +13,22 @@ interface ActionsButtonProps {
 }
 
 export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
-  const [veiculo, setVeiculo] = useState<VeiculoViewModel>(() => {
-    if (veiculoSelecionado) return veiculoSelecionado;
-    return {} as VeiculoViewModel;
-  });
-  
-  console.log(veiculo);
+  const [veiculo, setVeiculo] = useState<VeiculoViewModel>(
+    {} as VeiculoViewModel
+  );
+
+  useEffect(() => {
+    if (veiculoSelecionado) {
+      setVeiculo(veiculoSelecionado);
+    }
+  }, [veiculoSelecionado]);
 
   const [isOpenModalAdd, setIsOpenModalAdd] = useState<boolean>(false);
 
   const [actionButton, setActionButton] = useState<"add" | "edit" | "del">(
     "add"
   );
+
   const toast = useToast();
 
   const fnUseToast = (
@@ -54,7 +58,7 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
   function handleClickSave() {
     if (actionButton === "add") createEntity("Veiculo/Create", veiculo);
 
-    // if (actionButton === "edit") updateEntity("Veiculo/Update", veiculo);
+    if (actionButton === "edit") updateEntity("Veiculo/Update", veiculo);
 
     onCloseModal();
   }
@@ -82,7 +86,13 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
         label="Editar"
         colorScheme={"orange"}
         onClick={() => {
-          onOpenModal("edit");
+          veiculoSelecionado
+            ? onOpenModal("edit")
+            : fnUseToast(
+                "",
+                "Necessário selecionar um registro para esta operação",
+                "warning"
+              );
         }}
         children={<EditIcon width={3} height={3} marginRight={2} />}
       />
@@ -90,7 +100,15 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
         variant="solid"
         label="Deletar"
         colorScheme={"red"}
-        onClick={() => onOpenModal("del")}
+        onClick={() => {
+          veiculoSelecionado
+            ? onOpenModal("del")
+            : fnUseToast(
+                "",
+                "Necessário selecionar um registro para esta operação",
+                "warning"
+              );
+        }}
         children={<DeleteIcon width={3} height={3} marginRight={2} />}
       />
       <ModalPage
@@ -99,6 +117,7 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
         onClose={onCloseModal}
         contentBody={
           <ModalContentBody
+            veiculo={veiculo}
             handleInputChange={setVeiculo}
             action={actionButton}
           />

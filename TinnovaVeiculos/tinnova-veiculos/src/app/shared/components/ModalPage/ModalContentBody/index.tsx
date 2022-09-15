@@ -11,10 +11,12 @@ import {
 import { VeiculoViewModel } from "../../../models/VeiculoViewModel";
 
 export interface ModalContentBodyProps {
+  veiculo?: VeiculoViewModel;
   handleInputChange: React.Dispatch<React.SetStateAction<VeiculoViewModel>>;
   action: "add" | "edit" | "del";
 }
 export const ModalContentBody = ({
+  veiculo,
   handleInputChange,
   action,
 }: ModalContentBodyProps) => {
@@ -24,6 +26,7 @@ export const ModalContentBody = ({
         <FormLabel fontSize="14px">Veículo</FormLabel>
         <Input
           type="text"
+          value={veiculo?.modelo}
           onChange={(e) =>
             handleInputChange((prevState) => ({
               ...prevState,
@@ -36,6 +39,7 @@ export const ModalContentBody = ({
             <FormLabel fontSize="14px">Marca</FormLabel>
             <Input
               type="text"
+              value={veiculo?.marca}
               onChange={(e) =>
                 handleInputChange((prevState) => ({
                   ...prevState,
@@ -49,6 +53,7 @@ export const ModalContentBody = ({
             <FormLabel fontSize="14px">Ano</FormLabel>
             <Input
               type="number"
+              value={veiculo?.anoFabricacao}
               onChange={(e) => {
                 if (e.target.value.length === 4) {
                   handleInputChange((prevState) => ({
@@ -62,6 +67,7 @@ export const ModalContentBody = ({
         </Flex>
         <FormLabel fontSize="14px">Descrição</FormLabel>
         <Textarea
+          value={veiculo?.descricao}
           onChange={(e) =>
             handleInputChange((prevState) => ({
               ...prevState,
@@ -74,6 +80,7 @@ export const ModalContentBody = ({
         {action !== "add" && (
           <>
             <Checkbox
+              isChecked={veiculo?.vendido}
               onChange={(e) =>
                 handleInputChange((prevState) => ({
                   ...prevState,
