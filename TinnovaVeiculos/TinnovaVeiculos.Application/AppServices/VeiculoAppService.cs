@@ -13,13 +13,15 @@ namespace TinnovaVeiculos.Application.AppServices
         private readonly IVeiculoRepository _repository;
         private readonly IVeiculoProjector _projector;
         private readonly IVeiculoFactory _factory;
+        private readonly IVeiculoUpdater _updater;
 
 
-        public VeiculoAppService(IVeiculoRepository repository, IVeiculoProjector projector, IVeiculoFactory factory) : base(repository)
+        public VeiculoAppService(IVeiculoRepository repository, IVeiculoProjector projector, IVeiculoFactory factory, IVeiculoUpdater updater) : base(repository)
         {
             _repository = repository;
             _projector = projector;
             _factory = factory;
+            _updater = updater;
         }
 
         public IEnumerable<VeiculoDTO> GetAllAsNoTracking(GetAllVeiculoFilters filters, int page, int limit)
@@ -30,6 +32,12 @@ namespace TinnovaVeiculos.Application.AppServices
         public void Create(VeiculoDTO dto)
         {
             _repository.Create(_factory.ToCreate(dto));
+            _repository.Commit();
+        }
+
+        public void Update(VeiculoDTO dto)
+        {
+            _repository.Update(_updater.ToUpdate(dto));
             _repository.Commit();
         }
     }

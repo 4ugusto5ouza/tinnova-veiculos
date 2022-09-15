@@ -10,5 +10,6 @@ namespace TinnovaVeiculos.Application.Interfaces
     {
         IEnumerable<VeiculoDTO> GetAllAsNoTracking(GetAllVeiculoFilters filters, int page, int limit);
         void Create(VeiculoDTO dto);
+        void Update(VeiculoDTO dto);
     }
 }

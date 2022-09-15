@@ -41,6 +41,16 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
 
             return Ok();
         }
+
+        //PUT: VeiculoController/Update
+        [HttpPut("Update")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult UpdateAvisoFerias([FromBody] VeiculoDTO dto)
+        {
+            _appService.Update(dto);
+            return Ok();
+        }
     }
 }
 
