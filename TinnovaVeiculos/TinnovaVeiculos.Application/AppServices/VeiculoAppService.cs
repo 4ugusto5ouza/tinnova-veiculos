@@ -40,5 +40,16 @@ namespace TinnovaVeiculos.Application.AppServices
             _repository.Update(_updater.ToUpdate(dto));
             _repository.Commit();
         }
+
+        public void Delete(long id)
+        {
+            var entity = _repository.GetById(id);
+
+            if (entity != null)
+            {
+                _repository.Delete(entity);
+                _repository.Commit();
+            }
+        }
     }
 }

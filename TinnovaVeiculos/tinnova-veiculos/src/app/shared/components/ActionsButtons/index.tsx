@@ -6,7 +6,11 @@ import { ModalContentBody } from "../ModalPage/ModalContentBody";
 import { ModalContentFooter } from "../ModalPage/ModalContentFooter";
 import { useEffect, useState } from "react";
 import { VeiculoViewModel } from "../../models/VeiculoViewModel";
-import { createEntity, updateEntity } from "../../../services/api";
+import {
+  createEntity,
+  deleteEntity,
+  updateEntity,
+} from "../../../services/api";
 
 interface ActionsButtonProps {
   veiculoSelecionado?: VeiculoViewModel;
@@ -59,6 +63,8 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
     if (actionButton === "add") createEntity("Veiculo/Create", veiculo);
 
     if (actionButton === "edit") updateEntity("Veiculo/Update", veiculo);
+
+    if (actionButton === "del") deleteEntity("Veiculo/Delete", veiculo.id);
 
     onCloseModal();
   }

@@ -39,7 +39,7 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
         {
             _appService.Create(dto);
 
-            return Ok();
+            return Ok("Resgistro criado com sucesso!");
         }
 
         //PUT: VeiculoController/Update
@@ -49,7 +49,15 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
         public ActionResult UpdateAvisoFerias([FromBody] VeiculoDTO dto)
         {
             _appService.Update(dto);
-            return Ok();
+            return Ok("Resgistro atualizado com sucesso!");
+        }
+
+
+        [HttpDelete("Delete/{id}")]
+        public ActionResult Delete(long id)
+        {
+            _appService.Delete(id);
+            return Ok("Resgistro deletado com sucesso!");
         }
     }
 }
