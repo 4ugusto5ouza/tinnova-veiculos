@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import { getAll } from "../../../services/api";
 import { IVeiculoViewModel } from "../../models/VeiculoViewModel";
+import { ActionsButtons } from "../ActionsButtons";
 import { FormFilters } from "../FormFilters";
 
 export interface VeiculoFormFieldsProps {
@@ -42,13 +43,25 @@ export const VeiculosGrid = () => {
     Marca: marca,
   }: VeiculoFormFieldsProps) {
     if (anoFabricacaoMinimo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, AnoFabricacaoMinimo: anoFabricacaoMinimo }));
+      setFormFields((prevState) => ({
+        ...prevState,
+        AnoFabricacaoMinimo: anoFabricacaoMinimo,
+      }));
     if (anoFabricacaoMaximo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, AnoFabricacaoMaximo: anoFabricacaoMaximo }));
+      setFormFields((prevState) => ({
+        ...prevState,
+        AnoFabricacaoMaximo: anoFabricacaoMaximo,
+      }));
     if (dataRegistroMinimo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, DataRegistroMinimo: dataRegistroMinimo }));
+      setFormFields((prevState) => ({
+        ...prevState,
+        DataRegistroMinimo: dataRegistroMinimo,
+      }));
     if (dataRegistroMaximo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, DataRegistroMaximo: dataRegistroMaximo }));
+      setFormFields((prevState) => ({
+        ...prevState,
+        DataRegistroMaximo: dataRegistroMaximo,
+      }));
     if (marca.length > 2)
       setFormFields((prevState) => ({ ...prevState, Marca: marca }));
   }
@@ -61,10 +74,7 @@ export const VeiculosGrid = () => {
           handleSetFormFields={handleSetFormFields}
         />
         <Box width={"100%"} height={"100%"}>
-          {/* <ActionsBar  idAvisoFerias={selectedAvisoFerias.id} /> */}
-          <button>Adicionar</button>
-          <button>Editar</button>
-          <button>Deletar</button>
+          <ActionsButtons />
           <TableContainer>
             <Table variant="simple" size={"sm"} width={"100%"} height={"100%"}>
               <Thead>
