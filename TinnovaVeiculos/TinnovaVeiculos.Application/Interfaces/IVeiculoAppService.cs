@@ -9,6 +9,6 @@ namespace TinnovaVeiculos.Application.Interfaces
     public interface IVeiculoAppService : IAppServiceBase<Veiculo>
     {
         IEnumerable<VeiculoDTO> GetAllAsNoTracking(GetAllVeiculoFilters filters, int page, int limit);
-
+        void Create(VeiculoDTO dto);
     }
 }

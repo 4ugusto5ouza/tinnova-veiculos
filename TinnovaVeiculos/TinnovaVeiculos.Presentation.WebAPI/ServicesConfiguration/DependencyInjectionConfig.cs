@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TinnovaVeiculos.Application.AppServices;
+using TinnovaVeiculos.Application.Factories;
 using TinnovaVeiculos.Application.Interfaces;
 using TinnovaVeiculos.Application.MappingsProfiles;
 using TinnovaVeiculos.Domain.Interfaces.Repositories;
@@ -15,6 +16,7 @@ namespace TinnovaVeiculos.Presentation.WebAPI.ServicesConfiguration
             services.AddScoped<IVeiculoAppService, VeiculoAppService>();
             services.AddScoped<IVeiculoRepository, VeiculoRepository>();
             services.AddScoped<IVeiculoProjector, VeiculoProjector>();
+            services.AddScoped<IVeiculoFactory, VeiculoFactory>();
             #endregion
         }
     }

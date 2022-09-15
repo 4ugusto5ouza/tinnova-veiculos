@@ -12,16 +12,25 @@ namespace TinnovaVeiculos.Application.AppServices
     {
         private readonly IVeiculoRepository _repository;
         private readonly IVeiculoProjector _projector;
+        private readonly IVeiculoFactory _factory;
 
-        public VeiculoAppService(IVeiculoRepository repository, IVeiculoProjector projector) : base(repository)
+
+        public VeiculoAppService(IVeiculoRepository repository, IVeiculoProjector projector, IVeiculoFactory factory) : base(repository)
         {
             _repository = repository;
             _projector = projector;
+            _factory = factory;
         }
 
         public IEnumerable<VeiculoDTO> GetAllAsNoTracking(GetAllVeiculoFilters filters, int page, int limit)
         {
             return _projector.ToProject(_repository.GetAllAsNoTracking(filters, page, limit));
+        }
+
+        public void Create(VeiculoDTO dto)
+        {
+            _repository.Create(_factory.ToCreate(dto));
+            _repository.Commit();
         }
     }
 }

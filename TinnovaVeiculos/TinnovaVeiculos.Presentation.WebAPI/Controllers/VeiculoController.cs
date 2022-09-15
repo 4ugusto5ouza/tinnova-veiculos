@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using TinnovaVeiculos.Application.DTOs;
@@ -22,12 +23,23 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
             _appService = appService;
         }
 
-        // GET: VeiculoController
+        // GET: VeiculoController/GetAll
         [HttpGet("GetAll")]
         public ActionResult<IEnumerable<VeiculoDTO>> GetAllVeiculoDto([FromQuery] string filters, [FromQuery] int page = 0, [FromQuery] int limit = 25)
         {
             var filtro = filters.ToJson<GetAllVeiculoFilters>();
             return Ok(_appService.GetAllAsNoTracking(filtro, page, limit));
+        }
+
+        //POST: VeiculoController/Create
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult Create([FromBody] VeiculoDTO dto)
+        {
+            _appService.Create(dto);
+
+            return Ok();
         }
     }
 }
