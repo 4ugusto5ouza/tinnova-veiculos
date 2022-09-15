@@ -24,10 +24,10 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
 
         // GET: VeiculoController
         [HttpGet("GetAll")]
-        public ActionResult<IEnumerable<VeiculoDTO>> GetAllVeiculoDto([FromQuery] string filters, [FromQuery] int page, [FromQuery] int limit)
+        public ActionResult<IEnumerable<VeiculoDTO>> GetAllVeiculoDto([FromQuery] string filters, [FromQuery] int page = 0, [FromQuery] int limit = 25)
         {
             var filtro = filters.ToJson<GetAllVeiculoFilters>();
-            return Ok(_appService.GetAllAsNoTracking());
+            return Ok(_appService.GetAllAsNoTracking(filtro, page, limit));
         }
     }
 }
