@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TinnovaVeiculos.Application\TinnovaVeiculos.Application.csproj" />
+    <ProjectReference Include="..\TinnovaVeiculos.Infraestructure.CrossCutting\TinnovaVeiculos.Infraestructure.CrossCutting.csproj" />
     <ProjectReference Include="..\TinnovaVeiculos.Infrastruture.Data\TinnovaVeiculos.Infrastruture.Data.csproj" />
   </ItemGroup>
 

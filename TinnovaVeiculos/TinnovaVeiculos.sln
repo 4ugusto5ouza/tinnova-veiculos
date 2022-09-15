@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinnovaVeiculos.Infrastrutu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinnovaVeiculos.Application", "TinnovaVeiculos.Application\TinnovaVeiculos.Application.csproj", "{3CEDA780-31CF-4F71-87C0-1B26943B6AF6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCuttingg", "4.2 - CrossCuttingg", "{0110A449-1437-445F-9CFE-F9B949E548BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinnovaVeiculos.Infraestructure.CrossCutting", "TinnovaVeiculos.Infraestructure.CrossCutting\TinnovaVeiculos.Infraestructure.CrossCutting.csproj", "{A4CFC3DD-9D98-428C-8142-A3BDCD2CD0AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,10 @@ Global
 		{3CEDA780-31CF-4F71-87C0-1B26943B6AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CEDA780-31CF-4F71-87C0-1B26943B6AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CEDA780-31CF-4F71-87C0-1B26943B6AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CFC3DD-9D98-428C-8142-A3BDCD2CD0AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CFC3DD-9D98-428C-8142-A3BDCD2CD0AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CFC3DD-9D98-428C-8142-A3BDCD2CD0AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CFC3DD-9D98-428C-8142-A3BDCD2CD0AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +66,8 @@ Global
 		{7DCB323C-49E3-417E-AB5A-2E244E9ADC1A} = {93001097-2F76-45D6-B371-F98E1E65394A}
 		{3E02CA7C-2E32-4047-AD97-51DF89CE2E22} = {DC7B2A7E-76C3-4115-993F-EA4C9E3394DD}
 		{3CEDA780-31CF-4F71-87C0-1B26943B6AF6} = {9BAC7CBC-7C25-46F6-B44D-E22AB7BA88A8}
+		{0110A449-1437-445F-9CFE-F9B949E548BA} = {2EE5F905-B64D-494D-976B-696B55A6E221}
+		{A4CFC3DD-9D98-428C-8142-A3BDCD2CD0AB} = {0110A449-1437-445F-9CFE-F9B949E548BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD7001A5-F67C-4130-A000-E1BC3610615A}

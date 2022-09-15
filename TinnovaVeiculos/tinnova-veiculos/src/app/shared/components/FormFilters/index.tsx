@@ -6,11 +6,11 @@ import { InputDataFields } from "./InputDateField";
 export interface FormFiltersProps {
   formTitle: string;
   handleSetFormFields: ({
-    anoFabricacaoMinimo,
-    anoFabricacaoMaximo,
-    dataRegistroMinimo,
-    dataRegistroMaximo,
-    marca,
+    AnoFabricacaoMinimo: anoFabricacaoMinimo,
+    AnoFabricacaoMaximo: anoFabricacaoMaximo,
+    DataRegistroMinimo: dataRegistroMinimo,
+    DataRegistroMaximo: dataRegistroMaximo,
+    Marca: marca,
   }: VeiculoFormFieldsProps) => void;
 }
 
@@ -37,11 +37,11 @@ export const FormFilters = ({
     if (label === "Marca: ") marca = value;
 
     handleSetFormFields({
-      anoFabricacaoMinimo,
-      anoFabricacaoMaximo,
-      dataRegistroMinimo,
-      dataRegistroMaximo,
-      marca,
+      AnoFabricacaoMinimo: anoFabricacaoMinimo,
+      AnoFabricacaoMaximo: anoFabricacaoMaximo,
+      DataRegistroMinimo: dataRegistroMinimo,
+      DataRegistroMaximo: dataRegistroMaximo,
+      Marca: marca,
     });
   }
 

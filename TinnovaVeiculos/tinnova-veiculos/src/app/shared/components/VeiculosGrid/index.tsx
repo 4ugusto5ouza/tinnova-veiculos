@@ -11,46 +11,46 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getAll } from "../../../services/api";
-import { VeiculoVIewModel } from "../../models/VeiculoViewModel";
+import { IVeiculoViewModel } from "../../models/VeiculoViewModel";
 import { FormFilters } from "../FormFilters";
 
 export interface VeiculoFormFieldsProps {
-  anoFabricacaoMinimo: string;
-  anoFabricacaoMaximo: string;
-  dataRegistroMinimo: string;
-  dataRegistroMaximo: string;
-  marca: string;
+  AnoFabricacaoMinimo: string;
+  AnoFabricacaoMaximo: string;
+  DataRegistroMinimo: string;
+  DataRegistroMaximo: string;
+  Marca: string;
 }
 
 export const VeiculosGrid = () => {
-  const [veiculos, setVeiculos] = useState<VeiculoVIewModel[]>([]);
+  const [veiculos, setVeiculos] = useState<IVeiculoViewModel[]>([]);
   const [formFields, setFormFields] = useState<VeiculoFormFieldsProps>(
     {} as VeiculoFormFieldsProps
   );
 
   useEffect(() => {
-    getAll<VeiculoVIewModel>("Veiculo/GetAll", { filters: formFields })
+    getAll<IVeiculoViewModel>("Veiculo/GetAll", { filters: formFields })
       .then((response) => setVeiculos(() => response))
       .catch((error) => console.log(error));
   }, [formFields]);
 
   function handleSetFormFields({
-    anoFabricacaoMinimo,
-    anoFabricacaoMaximo,
-    dataRegistroMinimo,
-    dataRegistroMaximo,
-    marca,
+    AnoFabricacaoMinimo: anoFabricacaoMinimo,
+    AnoFabricacaoMaximo: anoFabricacaoMaximo,
+    DataRegistroMinimo: dataRegistroMinimo,
+    DataRegistroMaximo: dataRegistroMaximo,
+    Marca: marca,
   }: VeiculoFormFieldsProps) {
     if (anoFabricacaoMinimo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, anoFabricacaoMinimo }));
+      setFormFields((prevState) => ({ ...prevState, AnoFabricacaoMinimo: anoFabricacaoMinimo }));
     if (anoFabricacaoMaximo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, anoFabricacaoMaximo }));
+      setFormFields((prevState) => ({ ...prevState, AnoFabricacaoMaximo: anoFabricacaoMaximo }));
     if (dataRegistroMinimo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, dataRegistroMinimo }));
+      setFormFields((prevState) => ({ ...prevState, DataRegistroMinimo: dataRegistroMinimo }));
     if (dataRegistroMaximo.length > 2)
-      setFormFields((prevState) => ({ ...prevState, dataRegistroMaximo }));
+      setFormFields((prevState) => ({ ...prevState, DataRegistroMaximo: dataRegistroMaximo }));
     if (marca.length > 2)
-      setFormFields((prevState) => ({ ...prevState, marca }));
+      setFormFields((prevState) => ({ ...prevState, Marca: marca }));
   }
 
   return (

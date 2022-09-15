@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Linq;
 using TinnovaVeiculos.Application.DTOs;
 using TinnovaVeiculos.Application.Interfaces;
+using TinnovaVeiculos.Domain.Filters;
+using TinnovaVeiculos.Infraestructure.CrossCutting.Extensions;
+
 
 namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
 {
@@ -24,7 +26,7 @@ namespace TinnovaVeiculos.Presentation.WebAPI.Controllers
         [HttpGet("GetAll")]
         public ActionResult<IEnumerable<VeiculoDTO>> GetAllVeiculoDto([FromQuery] string filters, [FromQuery] int page, [FromQuery] int limit)
         {
-            //var filtro = filters.ToJson<Filter>();
+            var filtro = filters.ToJson<GetAllVeiculoFilters>();
             return Ok(_appService.GetAllAsNoTracking());
         }
     }
