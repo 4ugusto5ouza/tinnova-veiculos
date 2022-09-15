@@ -5,6 +5,7 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -15,9 +16,11 @@ import { VeiculoViewModel } from "../../models/VeiculoViewModel";
 import { ActionsButtons } from "../ActionsButtons";
 import { FormFilters } from "../FormFilters";
 
+import "./styles.css";
+
 export interface VeiculoFormFieldsProps {
-  AnoFabricacaoMinimo: string;
-  AnoFabricacaoMaximo: string;
+  AnoFabricacaoMinimo?: number;
+  AnoFabricacaoMaximo?: number;
   DataRegistroMinimo: string;
   DataRegistroMaximo: string;
   Marca: string;
@@ -35,55 +38,38 @@ export const VeiculosGrid = () => {
       .catch((error) => console.log(error));
   }, [formFields]);
 
-  function handleSetFormFields({
-    AnoFabricacaoMinimo: anoFabricacaoMinimo,
-    AnoFabricacaoMaximo: anoFabricacaoMaximo,
-    DataRegistroMinimo: dataRegistroMinimo,
-    DataRegistroMaximo: dataRegistroMaximo,
-    Marca: marca,
-  }: VeiculoFormFieldsProps) {
-    if (anoFabricacaoMinimo.length > 2)
-      setFormFields((prevState) => ({
-        ...prevState,
-        AnoFabricacaoMinimo: anoFabricacaoMinimo,
-      }));
-    if (anoFabricacaoMaximo.length > 2)
-      setFormFields((prevState) => ({
-        ...prevState,
-        AnoFabricacaoMaximo: anoFabricacaoMaximo,
-      }));
-    if (dataRegistroMinimo.length > 2)
-      setFormFields((prevState) => ({
-        ...prevState,
-        DataRegistroMinimo: dataRegistroMinimo,
-      }));
-    if (dataRegistroMaximo.length > 2)
-      setFormFields((prevState) => ({
-        ...prevState,
-        DataRegistroMaximo: dataRegistroMaximo,
-      }));
-    if (marca.length > 2)
-      setFormFields((prevState) => ({ ...prevState, Marca: marca }));
-  }
+  const handleSelectedClick = (id: number) => {
+    const data = veiculos.map((x) => {
+      x.selecionado = false;
+      if (x.id === id) x.selecionado = true;
+      return x;
+    });
+    setVeiculos(data);
+  };
 
+  function getVeiculoSelecionado(): VeiculoViewModel {
+    console.log(veiculos);
+
+    console.log(veiculos.find((x) => x.selecionado));
+    return veiculos[0];
+  }
   return (
     <Box width={"100%"} height={"700px"}>
       <Stack direction={"row"}>
-        <FormFilters
-          formTitle="Fitros"
-          handleSetFormFields={handleSetFormFields}
-        />
+        <FormFilters formTitle="Fitros" handleSetFormFields={setFormFields} />
         <Box width={"100%"} height={"100%"}>
-          <ActionsButtons />
+          <ActionsButtons veiculoSelecionado={getVeiculoSelecionado()} />
           <TableContainer>
             <Table variant="simple" size={"sm"} width={"100%"} height={"100%"}>
               <Thead>
                 <Tr>
+                  <Th>Id</Th>
                   <Th>Veículo</Th>
                   <Th>Marca</Th>
                   <Th>Ano</Th>
                   <Th>Descrição</Th>
                   <Th>Data Resgistro</Th>
+                  <Th>Data Atualização</Th>
                   <Th>Vendido</Th>
                 </Tr>
               </Thead>
@@ -91,7 +77,14 @@ export const VeiculosGrid = () => {
                 {veiculos &&
                   veiculos.map((veiculo) => {
                     return (
-                      <Tr key={veiculo.id}>
+                      <Tr
+                        className={
+                          veiculo.selecionado ? "selecionado" : "row-hover"
+                        }
+                        onClick={() => handleSelectedClick(veiculo.id)}
+                        key={veiculo.id}
+                      >
+                        <Td>{veiculo.id}</Td>
                         <Td>{veiculo.modelo}</Td>
                         <Td>{veiculo.marca}</Td>
                         <Td>{veiculo.anoFabricacao}</Td>
@@ -99,7 +92,32 @@ export const VeiculosGrid = () => {
                         <Td>
                           {new Date(veiculo.dataRegistro).toLocaleDateString()}
                         </Td>
-                        <Td>{veiculo.vendido ? "SIM" : "NÃO"}</Td>
+                        <Td>
+                          {veiculo.dataAtualizacao
+                            ? new Date(
+                                veiculo.dataAtualizacao
+                              ).toLocaleDateString()
+                            : ""}
+                        </Td>
+                        <Td>
+                          {veiculo.vendido ? (
+                            <Text
+                              color="green"
+                              fontSize={"12px"}
+                              fontWeight={700}
+                            >
+                              {"SIM"}
+                            </Text>
+                          ) : (
+                            <Text
+                              color="red"
+                              fontSize={"12px"}
+                              fontWeight={700}
+                            >
+                              {"NÃO"}
+                            </Text>
+                          )}
+                        </Td>
                       </Tr>
                     );
                   })}

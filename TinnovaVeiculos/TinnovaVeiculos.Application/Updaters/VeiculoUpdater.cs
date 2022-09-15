@@ -9,9 +9,7 @@ namespace TinnovaVeiculos.Application.Updaters
     {
         public Veiculo ToUpdate(VeiculoDTO dto)
         {
-            var entity = new Veiculo(dto.Modelo, dto.Marca, dto.AnoFabricacao, dto.Descricao);
-            
-            entity.Id = dto.Id;
+            var entity = new Veiculo(dto.Id, dto.Modelo, dto.Marca, dto.AnoFabricacao, dto.Descricao, dto.DataRegistro);
 
             entity.SetVendido(dto.Vendido);
             entity.SetDataAtualizacao();

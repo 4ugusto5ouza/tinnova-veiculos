@@ -12,9 +12,11 @@ import { VeiculoViewModel } from "../../../models/VeiculoViewModel";
 
 export interface ModalContentBodyProps {
   handleInputChange: React.Dispatch<React.SetStateAction<VeiculoViewModel>>;
+  action: "add" | "edit" | "del";
 }
 export const ModalContentBody = ({
   handleInputChange,
+  action,
 }: ModalContentBodyProps) => {
   return (
     <Box>
@@ -46,19 +48,20 @@ export const ModalContentBody = ({
           <Box width={"50%"}>
             <FormLabel fontSize="14px">Ano</FormLabel>
             <Input
-              type="text"
-              onChange={(e) =>
-                handleInputChange((prevState) => ({
-                  ...prevState,
-                  anoFabricacao: Number(e.target.value),
-                }))
-              }
+              type="number"
+              onChange={(e) => {
+                if (e.target.value.length === 4) {
+                  handleInputChange((prevState) => ({
+                    ...prevState,
+                    anoFabricacao: Number(e.target.value),
+                  }));
+                }
+              }}
             />
           </Box>
         </Flex>
         <FormLabel fontSize="14px">Descrição</FormLabel>
         <Textarea
-          //   value={value}
           onChange={(e) =>
             handleInputChange((prevState) => ({
               ...prevState,
@@ -67,6 +70,22 @@ export const ModalContentBody = ({
           }
           size="sm"
         />
+
+        {action !== "add" && (
+          <>
+            <Checkbox
+              onChange={(e) =>
+                handleInputChange((prevState) => ({
+                  ...prevState,
+                  vendido: e.target.checked,
+                }))
+              }
+            >
+              <FormLabel fontSize="14px">Vendido</FormLabel>
+            </Checkbox>
+          </>
+        )}
+        {/* {action === "del" && <>Deletar</>} */}
       </FormControl>
     </Box>
   );

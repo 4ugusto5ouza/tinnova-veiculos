@@ -16,6 +16,7 @@ namespace TinnovaVeiculos.Application.MappingsProfiles
                 Marca = entity.Marca,
                 AnoFabricacao = entity.AnoFabricacao,
                 Descricao = entity.Descricao,
+                Vendido = entity.Vendido,
                 DataRegistro = entity.DataRegistro,
                 DataAtualizacao = entity.DataAtualizacao
             };

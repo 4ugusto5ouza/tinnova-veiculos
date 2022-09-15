@@ -2,49 +2,19 @@ import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 import { VeiculoFormFieldsProps } from "../VeiculosGrid";
 import { InputComboBoxField } from "./InputComboBoxField";
 import { InputDataFields } from "./InputDateField";
+import { InputNumberField } from "./InputNumberField";
 
 export interface FormFiltersProps {
   formTitle: string;
-  handleSetFormFields: ({
-    AnoFabricacaoMinimo: anoFabricacaoMinimo,
-    AnoFabricacaoMaximo: anoFabricacaoMaximo,
-    DataRegistroMinimo: dataRegistroMinimo,
-    DataRegistroMaximo: dataRegistroMaximo,
-    Marca: marca,
-  }: VeiculoFormFieldsProps) => void;
-}
-
-export interface SingleFormFieldProps {
-  label: string;
-  value: string;
+  handleSetFormFields: React.Dispatch<
+    React.SetStateAction<VeiculoFormFieldsProps>
+  >;
 }
 
 export const FormFilters = ({
   formTitle,
   handleSetFormFields,
 }: FormFiltersProps) => {
-  function ApplySetFormFields({ label, value }: SingleFormFieldProps) {
-    let anoFabricacaoMinimo = "",
-      anoFabricacaoMaximo = "",
-      dataRegistroMinimo = "",
-      dataRegistroMaximo = "",
-      marca = "";
-
-    if (label === "Data mínima: ") anoFabricacaoMinimo = value;
-    if (label === "Data máxima: ") anoFabricacaoMaximo = value;
-    if (label === "Data início: ") dataRegistroMinimo = value;
-    if (label === "Data fim: ") dataRegistroMaximo = value;
-    if (label === "Marca: ") marca = value;
-
-    handleSetFormFields({
-      AnoFabricacaoMinimo: anoFabricacaoMinimo,
-      AnoFabricacaoMaximo: anoFabricacaoMaximo,
-      DataRegistroMinimo: dataRegistroMinimo,
-      DataRegistroMaximo: dataRegistroMaximo,
-      Marca: marca,
-    });
-  }
-
   return (
     <Box
       width={"220px"}
@@ -58,22 +28,22 @@ export const FormFilters = ({
           {formTitle}
         </Text>
         <Divider marginBottom={"14px"} />
-        <InputDataFields
+        <InputNumberField
           title="Ano Fabricação"
-          labelDataInicial="Data mínima: "
-          labelDataFinal="Data máxima: "
-          handleSetFormField={ApplySetFormFields}
+          labelMinimo="Ano mínimo: "
+          labelMaximo="Ano máximo: "
+          handleSetFormField={handleSetFormFields}
         />
         <InputDataFields
           title="Data registro"
           labelDataInicial="Data início: "
           labelDataFinal="Data fim: "
-          handleSetFormField={ApplySetFormFields}
+          handleSetFormField={handleSetFormFields}
         />
         <InputComboBoxField
           label="Marca: "
           options={["Ford", "Chevrolet", "Toyota"]}
-          handleSetFormField={ApplySetFormFields}
+          handleSetFormField={handleSetFormFields}
         />
       </Flex>
     </Box>

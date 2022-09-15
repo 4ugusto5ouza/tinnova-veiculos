@@ -3,7 +3,7 @@
 namespace TinnovaVeiculos.Domain.Entities
 {
     public class Veiculo
-    {
+    {        
         public Veiculo()
         {
             Vendido = false;
@@ -20,6 +20,16 @@ namespace TinnovaVeiculos.Domain.Entities
             DataRegistro = DateTime.Now;
         }
 
+        public Veiculo(long id, string modelo, string marca, int anoFabricacao, string descricao, DateTime dataRegistro)
+        {
+            Id = id;
+            Modelo = modelo;
+            Marca = marca;
+            AnoFabricacao = anoFabricacao;
+            Descricao = descricao;
+            DataRegistro = dataRegistro;
+        }
+
         public long Id { get; set; }
         public string Modelo { get; set; }
         public string Marca { get; set; }
@@ -32,6 +42,11 @@ namespace TinnovaVeiculos.Domain.Entities
         public void SetVendido(bool vendido)
         {
             Vendido = vendido;
+        }
+
+        public void SetDataRegistro(DateTime dataRegistro)
+        {
+            DataRegistro = dataRegistro;
         }
 
         public void SetDataAtualizacao()

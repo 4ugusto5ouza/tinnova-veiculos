@@ -14,7 +14,6 @@ import { ReactNode } from "react";
 export interface ModalPageProps {
   title: string;
   isOpen: boolean;
-  onOpen: () => void;
   onClose: () => void;
   contentBody: ReactNode;
   contentFooter: ReactNode;
@@ -23,7 +22,6 @@ export interface ModalPageProps {
 export const ModalPage = ({
   title,
   isOpen,
-  onOpen,
   onClose,
   contentBody,
   contentFooter,

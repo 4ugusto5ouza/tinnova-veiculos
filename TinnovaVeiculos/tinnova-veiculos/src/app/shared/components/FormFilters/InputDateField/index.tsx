@@ -1,11 +1,13 @@
 import { Divider, Flex, Input, Text } from "@chakra-ui/react";
-import { SingleFormFieldProps } from "..";
+import { VeiculoFormFieldsProps } from "../../VeiculosGrid";
 
 export interface InputDataFieldsProps {
   title: string;
   labelDataInicial: string;
   labelDataFinal?: string;
-  handleSetFormField: ({ label, value }: SingleFormFieldProps) => void;
+  handleSetFormField: React.Dispatch<
+    React.SetStateAction<VeiculoFormFieldsProps>
+  >;
 }
 export const InputDataFields = ({
   title,
@@ -18,30 +20,30 @@ export const InputDataFields = ({
       <Text fontSize={"16px"} fontWeight={600}>
         {title}
       </Text>
-      <Flex>
+      <Flex marginBottom={"10px"}>
         <Text fontSize={"14px"}>{labelDataInicial}</Text>
         <Input
           size={"sm"}
           type={"Date"}
           onChange={(e) =>
-            handleSetFormField({
-              label: labelDataInicial,
-              value: e.target.value,
-            })
+            handleSetFormField((prevState) => ({
+              ...prevState,
+              DataRegistroMinimo: e.target.value,
+            }))
           }
         />
       </Flex>
       {labelDataFinal && (
-        <Flex>
+        <Flex marginBottom={"10px"}>
           <Text fontSize={"14px"}>{labelDataFinal}</Text>
           <Input
             size={"sm"}
             type={"Date"}
             onChange={(e) =>
-              handleSetFormField({
-                label: labelDataFinal,
-                value: e.target.value,
-              })
+              handleSetFormField((prevState) => ({
+                ...prevState,
+                DataRegistroMaximo: e.target.value,
+              }))
             }
           />
         </Flex>

@@ -22,17 +22,17 @@ namespace TinnovaVeiculos.Infrastruture.Data.Repositories
 
             var query = from entity in veiculos select entity;
 
-            if (filters.AnoFabricacaoMaximo.HasValue)
-                query = from entity in query where entity.AnoFabricacao <=  filters.AnoFabricacaoMaximo.Value.Year select entity;
-
             if (filters.AnoFabricacaoMinimo.HasValue)
-                query = from entity in query where entity.AnoFabricacao >=  filters.AnoFabricacaoMinimo.Value.Year select entity;
+                query = from entity in query where entity.AnoFabricacao >= filters.AnoFabricacaoMinimo.Value  select entity;
+
+            if (filters.AnoFabricacaoMaximo.HasValue)
+                query = from entity in query where entity.AnoFabricacao <= filters.AnoFabricacaoMaximo.Value select entity;
+
+            if (filters.DataRegistroMinimo.HasValue)
+                query = from entity in query where entity.DataRegistro >=  filters.DataRegistroMinimo.Value select entity;
 
             if (filters.DataRegistroMaximo.HasValue)
                 query = from entity in query where entity.DataRegistro <=  filters.DataRegistroMaximo.Value select entity;
-
-            if (filters.DataRegistroMinimo.HasValue)
-                query = from entity in query where entity.DataRegistro <=  filters.DataRegistroMinimo.Value select entity;
 
             if (!string.IsNullOrEmpty(filters.Marca))
                 query = from entity in query where entity.Marca.Contains(filters.Marca) select entity;
