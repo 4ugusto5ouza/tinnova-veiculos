@@ -24,13 +24,14 @@ Nesta aplicação é possível realizar o cadastro de veículos, atualizar todo,
 # Como executar o projeto
 ```bash
 # clonar repositório
+https://github.com/4ugusto5ouza/tinnova-veiculos.git
 
 # entrar na pasta do projeto front end web
 ## instalar dependências
 npm install
 
 # executar o projeto
-npm rn dev
+npm run dev
 ```
 
  # Autor
