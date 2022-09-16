@@ -4,7 +4,7 @@ import { ButtonAction } from "./ButtonAction";
 import { ModalPage } from "../ModalPage";
 import { ModalContentBody } from "../ModalPage/ModalContentBody";
 import { ModalContentFooter } from "../ModalPage/ModalContentFooter";
-import { useEffect, useState } from "react";
+import { ErrorInfo, useEffect, useState } from "react";
 import { VeiculoViewModel } from "../../models/VeiculoViewModel";
 import {
   createEntity,
@@ -76,11 +76,13 @@ export const ActionsButtons = ({
       if (actionButton === "del") {
         const res = await deleteEntity("Veiculo/Delete", veiculo.id);
       }
-    } catch (error) {
-      console.log(error);
+
+      reloadGrid();
+      onCloseModal();
+    } catch (error: any) {
+      const errors = error.response.data.errors.Marca;
+      fnUseToast("Error", errors[0], "error");
     }
-    reloadGrid();
-    onCloseModal();
   }
 
   return (
