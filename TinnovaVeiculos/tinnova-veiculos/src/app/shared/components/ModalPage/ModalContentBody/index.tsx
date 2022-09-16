@@ -55,7 +55,7 @@ export const ModalContentBody = ({
               type="number"
               value={veiculo?.anoFabricacao}
               onChange={(e) => {
-                if (e.target.value.length === 4) {
+                if (e.target.value.length <= 4) {
                   handleInputChange((prevState) => ({
                     ...prevState,
                     anoFabricacao: Number(e.target.value),

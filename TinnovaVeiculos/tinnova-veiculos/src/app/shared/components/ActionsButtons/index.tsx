@@ -14,9 +14,13 @@ import {
 
 interface ActionsButtonProps {
   veiculoSelecionado?: VeiculoViewModel;
+  reloadGrid: () => void;
 }
 
-export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
+export const ActionsButtons = ({
+  veiculoSelecionado,
+  reloadGrid,
+}: ActionsButtonProps) => {
   const [veiculo, setVeiculo] = useState<VeiculoViewModel>(
     {} as VeiculoViewModel
   );
@@ -59,14 +63,23 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
     setIsOpenModalAdd(false);
   }
 
-  function handleClickActions() {
+  async function handleClickActions() {
+    try {
+      if (actionButton === "add") {
+        await createEntity("Veiculo/Create", veiculo);
+      }
 
-    if (actionButton === "add") createEntity("Veiculo/Create", veiculo);
+      if (actionButton === "edit") {
+        await updateEntity("Veiculo/Update", veiculo);
+      }
 
-    if (actionButton === "edit") updateEntity("Veiculo/Update", veiculo);
-
-    if (actionButton === "del") deleteEntity("Veiculo/Delete", veiculo.id);
-
+      if (actionButton === "del") {
+        const res = await deleteEntity("Veiculo/Delete", veiculo.id);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    reloadGrid();
     onCloseModal();
   }
 
@@ -85,7 +98,11 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
         variant="solid"
         label="Adicionar"
         colorScheme={"green"}
-        onClick={() => onOpenModal("add")}
+        onClick={() => {
+          setVeiculo({} as VeiculoViewModel);
+          reloadGrid();
+          onOpenModal("add");
+        }}
         children={<AddIcon width={3} height={3} marginRight={2} />}
       />
       <ButtonAction

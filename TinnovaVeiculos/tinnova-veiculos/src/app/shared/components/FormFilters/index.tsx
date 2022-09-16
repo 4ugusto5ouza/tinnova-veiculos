@@ -17,7 +17,7 @@ export const FormFilters = ({
 }: FormFiltersProps) => {
   return (
     <Box
-      width={"220px"}
+      width={"240px"}
       height={"700px"}
       shadow="base"
       padding={"0 2%"}

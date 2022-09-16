@@ -47,6 +47,10 @@ export const VeiculosGrid = () => {
     setVeiculos(data);
   };
 
+  const reloadGrid = () => {
+    setFormFields({} as VeiculoFormFieldsProps);
+  };
+
   function getVeiculoSelecionado(): VeiculoViewModel {
     const veiculo = veiculos.find((x) => x.selecionado);
     return veiculo as VeiculoViewModel;
@@ -56,7 +60,10 @@ export const VeiculosGrid = () => {
       <Stack direction={"row"}>
         <FormFilters formTitle="Fitros" handleSetFormFields={setFormFields} />
         <Box width={"100%"} height={"100%"}>
-          <ActionsButtons veiculoSelecionado={getVeiculoSelecionado()} />
+          <ActionsButtons
+            veiculoSelecionado={getVeiculoSelecionado()}
+            reloadGrid={reloadGrid}
+          />
           <TableContainer>
             <Table variant="simple" size={"sm"} width={"100%"} height={"100%"}>
               <Thead>
@@ -86,7 +93,15 @@ export const VeiculosGrid = () => {
                         <Td>{veiculo.modelo}</Td>
                         <Td>{veiculo.marca}</Td>
                         <Td>{veiculo.anoFabricacao}</Td>
-                        <Td>{veiculo.descricao}</Td>
+                        <Td>
+                          <Text
+                            overflow={"hidden"}
+                            textOverflow={"ellipsis"}
+                            width={"230px"}
+                          >
+                            {veiculo.descricao}
+                          </Text>
+                        </Td>
                         <Td>
                           {new Date(veiculo.dataRegistro).toLocaleDateString()}
                         </Td>

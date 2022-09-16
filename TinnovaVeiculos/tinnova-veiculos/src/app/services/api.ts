@@ -36,16 +36,28 @@ function fetchData<Type>(arg: Type): Type {
 }
 
 //CREATE
-export async function createEntity<Type>(controllerUrl: string, body: Type) {
+export async function createEntity<Type>(
+  controllerUrl: string,
+  body: Type
+): Promise<string> {
   const { data } = await api.post(`/${controllerUrl}`, body);
+  return data as string;
 }
 
 //UPDATE
-export async function updateEntity<Type>(controllerUrl: string, body: Type) {
+export async function updateEntity<Type>(
+  controllerUrl: string,
+  body: Type
+): Promise<string> {
   const { data } = await api.put(`/${controllerUrl}`, body);
+  return data as string;
 }
 
 //DELETE
-export async function deleteEntity<Type>(controllerUrl: string, body: Type) {
+export async function deleteEntity<Type>(
+  controllerUrl: string,
+  body: Type
+): Promise<string> {
   const { data } = await api.delete(`/${controllerUrl}/${body}`);
+  return data as string;
 }
