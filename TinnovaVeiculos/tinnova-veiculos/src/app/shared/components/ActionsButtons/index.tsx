@@ -59,7 +59,8 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
     setIsOpenModalAdd(false);
   }
 
-  function handleClickSave() {
+  function handleClickActions() {
+
     if (actionButton === "add") createEntity("Veiculo/Create", veiculo);
 
     if (actionButton === "edit") updateEntity("Veiculo/Update", veiculo);
@@ -131,7 +132,7 @@ export const ActionsButtons = ({ veiculoSelecionado }: ActionsButtonProps) => {
         contentFooter={
           <ModalContentFooter
             handleClickCancelar={onCloseModal}
-            handleClickSalvar={handleClickSave}
+            handleClickSalvar={handleClickActions}
           />
         }
       />

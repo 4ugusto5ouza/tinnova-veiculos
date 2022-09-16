@@ -19,7 +19,6 @@ export async function getAll<Type>(controllerUrl: string, filters?: {}) {
   return fetchAllData<Type>(data);
 }
 
-
 //GET BY ID
 export async function getById<Type>(
   controllerUrl: string,
@@ -48,5 +47,5 @@ export async function updateEntity<Type>(controllerUrl: string, body: Type) {
 
 //DELETE
 export async function deleteEntity<Type>(controllerUrl: string, body: Type) {
-  const { data } = await api.delete(`/${controllerUrl}`, body);
+  const { data } = await api.delete(`/${controllerUrl}/${body}`);
 }
